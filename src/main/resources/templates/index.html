@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+    <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+<main class="container">
+    <div class="block">
+        <h1>Сервис по сокращению ссылок</h1>
+    </div>
+
+    <div class="articles" th:if="${!articles.isEmpty()}">
+        <div th:each="el : ${articles}">
+            <p>Ваша ссылка:</p>
+            <h3 th:text="${el.info}"/>
+            <a th:href=" ${el.info}" />
+            <p>Ваше сокращение</p>
+            <p th:text="${el.title}"/>
+            </a>
+        </div>
+    </div>
+
+    <div th:if="${articles.isEmpty()}" class="block">
+        <p>У вас нет ссылок</p>
+    </div>
+    <form method="post" >
+        <input type="text" name="info" placeholder="Введите полную ссылки">
+        <input type="text" name="title" placeholder="Введите свою ссылку"></textarea>
+        <button type="submit">Добавить</button>
+
+    </form>
+    </div>
+
+</main>
+</body>
+</html>
